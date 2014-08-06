@@ -1,0 +1,25 @@
+{
+    "name": "angel/carousels",
+    "description": "An Angel CMS module for carousels.",
+    "authors": [
+        {
+            "name": "James Robinett",
+            "email": "JamesR@angelvisiontech.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+	    "classmap": [
+		    "src/migrations",
+		    "src/controllers",
+		    "src/models"
+	    ],
+        "psr-0": {
+            "Angel\\Carousels\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
