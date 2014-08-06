@@ -4,13 +4,6 @@ use Eloquent, App;
 
 class Carousel extends Eloquent {
 
-	public static function columns()
-	{
-		return array(
-			'name'
-		);
-	}
-
 	///////////////////////////////////////////////
 	//               Relationships               //
 	///////////////////////////////////////////////

@@ -6,8 +6,7 @@
 @stop
 
 @section('js')
-	{{ HTML::script('assets/js/ckeditor/ckeditor.js') }}
-	{{ HTML::script('assets/admin/carousels/index.js') }}
+	{{ HTML::script('packages/angel/core/js/ckeditor/ckeditor.js') }}it's
 @stop
 
 @section('content')
@@ -58,17 +57,17 @@
 						<td>
 							<div class="slides">
 								@foreach ($carousel->slides as $slide)
-									<div class="slide">
-										<p>
-											{{ Form::text('slideNames['.$slide->id.']', $slide->name, array('class'=>'form-control', 'placeholder'=>'Name')) }}
-										</p>
-										<p>
-											{{ Form::textarea('slideContents['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
-										</p>
-										<p class="text-left">
-											<a type="button" class="btn btn-danger btn-sm delete-slide" href="{{ url('admin/carousels/delete-slide/' . $carousel->id . '/' . $slide->id )  }}">Delete Slide</a>
-										</p>
-									</div>
+								<div class="slide">
+									<p>
+										{{ Form::text('slideNames['.$slide->id.']', $slide->name, array('class'=>'form-control', 'placeholder'=>'Name')) }}
+									</p>
+									<p>
+										{{ Form::textarea('slideContents['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
+									</p>
+									<p class="text-left">
+										<a type="button" class="btn btn-danger btn-sm delete-slide" href="{{ url('admin/carousels/delete-slide/' . $carousel->id . '/' . $slide->id )  }}">Delete Slide</a>
+									</p>
+								</div>
 								@endforeach
 							</div>
 							<br />

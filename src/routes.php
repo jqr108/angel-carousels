@@ -33,4 +33,8 @@ Route::group(array('prefix'=>admin_uri('carousels'), 'before'=>'admin'), functio
 		'before' => 'admin',
 		'uses' => $controller . '@restore'
 	));
+	Route::get('add-slide/{id}', array(
+		'before' => 'admin',
+		'uses' => $controller . '@add_slide'
+	));
 });
