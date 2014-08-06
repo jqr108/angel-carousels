@@ -14,17 +14,6 @@
 				Add
 			</a>
 		</div>
-		<div class="col-sm-4 well">
-			{{ Form::open(array('role'=>'form', 'method'=>'get')) }}
-				<div class="form-group">
-					<label>Search</label>
-					<input type="text" name="search" class="form-control" value="{{ $search }}" />
-				</div>
-				<div class="text-right">
-					<input type="submit" class="btn btn-primary" value="Search" />
-				</div>
-			{{ Form::close() }}
-		</div>
 	</div>
 	<div class="row text-center">
 		{{ $links }}

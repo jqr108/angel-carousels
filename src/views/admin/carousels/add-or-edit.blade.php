@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('core::admin.template')
 
 @section('title', ucfirst($action).' Carousel')
 

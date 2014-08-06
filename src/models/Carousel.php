@@ -1,10 +1,9 @@
-<?php
+<?php namespace Angel\Carousels;
+
+use Eloquent, App;
 
 class Carousel extends Eloquent {
 
-	protected $softDelete = true;
-
-	// Columns to update/insert on edit/add
 	public static function columns()
 	{
 		return array(
@@ -17,6 +16,6 @@ class Carousel extends Eloquent {
 	///////////////////////////////////////////////
 	public function slides()
 	{
-		return $this->hasMany('CarouselSlide');
+		return $this->hasMany(App::make('CarouselSlide'));
 	}
 }

@@ -26,6 +26,7 @@ class CarouselsServiceProvider extends ServiceProvider {
 		$bindings = array(
 			// Models
 			'Carousel'                => '\Angel\Carousels\Carousel',
+			'CarouselSlide'           => '\Angel\Carousels\Carousel',
 
 			// Controllers
 			'AdminCarouselController' => '\Angel\Carousels\AdminCarouselController'

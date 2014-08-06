@@ -1,4 +1,6 @@
-<?php
+<?php namespace Angel\Carousels;
+
+use Eloquent;
 
 class CarouselSlide extends Eloquent {
 
