@@ -46,7 +46,8 @@ class AdminCarouselController extends AdminCrudController {
 		}
 	}
 
-	public function delete_slide($carousel_id, $slide_id) {
+	public function delete_slide($carousel_id, $slide_id)
+	{
 		$CarouselSlide = App::make('CarouselSlide');
 
 		$slide = $CarouselSlide::where('id', $slide_id)->where('carousel_id', $carousel_id)->first();
