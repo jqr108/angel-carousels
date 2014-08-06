@@ -6,7 +6,7 @@
 @stop
 
 @section('js')
-	{{ HTML::script('packages/angel/core/js/ckeditor/ckeditor.js') }}it's
+	{{ HTML::script('packages/angel/core/js/ckeditor/ckeditor.js') }}
 @stop
 
 @section('content')
