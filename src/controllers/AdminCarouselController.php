@@ -1,7 +1,21 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gabriel
- * Date: 8/6/14
- * Time: 10:38 AM
- */ 
+<?php namespace Angel\Carousels;
+
+use Angel\Core\AdminCrudController;
+
+class AdminCarouselController extends AdminCrudController {
+
+	protected $Model	= 'Carousel';
+	protected $uri		= 'carousels';
+	protected $plural	= 'carousels';
+	protected $singular	= 'carousel';
+	protected $package	= 'carousels';
+
+
+	public function validate_rules($id = null)
+	{
+		return array(
+			'name' => 'required'
+		);
+	}
+
+}
