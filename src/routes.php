@@ -29,3 +29,8 @@ Route::group(array('prefix'=>admin_uri('carousels'), 'before'=>'admin'), functio
 		'uses' => $controller . '@delete_slide'
 	));
 });
+
+Route::get('carousel-test', function() {
+	$Carousel = App::make('Carousel');
+	echo $Carousel::find(1)->display();
+});
