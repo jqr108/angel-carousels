@@ -2,7 +2,7 @@
 
 use Angel\Core\AdminCrudController;
 
-use Redirect;
+use Redirect, App, Input;
 
 class AdminCarouselController extends AdminCrudController {
 
@@ -11,6 +11,7 @@ class AdminCarouselController extends AdminCrudController {
 	protected $plural	= 'carousels';
 	protected $singular	= 'carousel';
 	protected $package	= 'carousels';
+	protected $slug     = 'name';
 
 	public static function columns()
 	{
@@ -26,14 +27,29 @@ class AdminCarouselController extends AdminCrudController {
 		);
 	}
 
-	public function add_slide($id)
+	public function after_save($object, &$changes = array())
 	{
-		$slide = new CarouselSlide;
-		$slide->carousel_id = $id;
-		$slide->save();
+		$slides = Input::get('slides');
 
-		return Redirect::to('admin/carousels/edit/'.$id)->with('success', '
-			<p>Slide successfully added.</p>
+		if ($slides) {
+			foreach ($slides as $k => $v) {
+				$slide = CarouselSlide::where('id', $k)->where('carousel_id', $object->id)->first();
+				if (!$slide) {
+					$slide = new CarouselSlide();
+					$slide->carousel_id = $object->id;
+				}
+				$slide->html = $v;
+				$slide->save();
+			}
+		}
+	}
+
+	public function delete_slide($carousel, $slide) {
+		$slide = CarouselSlide::where('id', $slide)->where('carousel_id', $carousel)->first();
+		if ($slide) $slide->delete();
+
+		return Redirect::to('admin/carousels/edit/'.$carousel)->with('success', '
+			<p>Slide successfully deleted.</p>
 		');
 	}
 

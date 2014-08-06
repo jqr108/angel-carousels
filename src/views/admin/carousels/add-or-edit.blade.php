@@ -7,6 +7,26 @@
 
 @section('js')
 	{{ HTML::script('packages/angel/core/js/ckeditor/ckeditor.js') }}
+	<script>
+		$('.add-slide').click(function() {
+			var newNumber = parseInt($('.slide').last().data('id')) + 1;
+			if (isNaN(newNumber)) {
+				newNumber = 1;
+			}
+			var html =
+				'<div class="slide" data-id="'+newNumber+'">'
+				+ '<p><textarea class="ckeditor" name="slides['+newNumber+']" id="ckMe'+newNumber+'"></textarea><p>'
+				+ '<p class="text-left">'
+				+ '<a type="button" class="btn btn-danger btn-sm delete-slide" id="delete'+newNumber+'">Delete Slide</a>'
+				+ '</p>'
+				+ '</div>';
+			$('.slides').append(html);
+			$('#delete' + newNumber).click(function() {
+				$(this).parent().parent().remove();
+			});
+			CKEDITOR.replace('ckMe'+newNumber);
+		});
+	</script>
 @stop
 
 @section('content')
@@ -57,12 +77,9 @@
 						<td>
 							<div class="slides">
 								@foreach ($carousel->slides as $slide)
-								<div class="slide">
+								<div class="slide" data-id="{{ $slide->id }}">
 									<p>
-										{{ Form::text('slideNames['.$slide->id.']', $slide->name, array('class'=>'form-control', 'placeholder'=>'Name')) }}
-									</p>
-									<p>
-										{{ Form::textarea('slideContents['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
+										{{ Form::textarea('slides['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
 									</p>
 									<p class="text-left">
 										<a type="button" class="btn btn-danger btn-sm delete-slide" href="{{ url('admin/carousels/delete-slide/' . $carousel->id . '/' . $slide->id )  }}">Delete Slide</a>
@@ -72,7 +89,7 @@
 							</div>
 							<br />
 							<div>
-								<a class="btn btn-default btn-md" href="{{ url('admin/carousels/add-slide/' . $carousel->id ) }}">
+								<a class="btn btn-default btn-md add-slide">
 									<span class="glyphicon glyphicon-plus"></span>
 									Add Slide
 								</a>

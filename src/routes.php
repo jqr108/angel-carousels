@@ -23,18 +23,9 @@ Route::group(array('prefix'=>admin_uri('carousels'), 'before'=>'admin'), functio
 	));
 	Route::post('delete/{id}', array(
 		'before' => 'csrf',
-		'uses' => $controller . '@delete'
-	));
-	Route::post('hard-delete/{id}', array(
-		'before' => 'csrf',
 		'uses' => $controller . '@hard_delete'
 	));
-	Route::get('restore/{id}', array(
-		'before' => 'admin',
-		'uses' => $controller . '@restore'
-	));
-	Route::get('add-slide/{id}', array(
-		'before' => 'admin',
-		'uses' => $controller . '@add_slide'
+	Route::get('delete-slide/{carousel}/{slide}', array(
+		'uses' => $controller . '@delete_slide'
 	));
 });
