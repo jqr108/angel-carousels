@@ -15,8 +15,8 @@ class Carousel extends Eloquent {
 	public function display()
 	{
 		$data = array();
-		$data['slides'] = $this->slides();
+		$data['slides'] = $this->slides;
 		$data['id']   = 'carousel-' . $this->slug;
-		return View::make('carousels.render', $data);
+		return View::make('carousels::carousels.render', $data);
 	}
 }
