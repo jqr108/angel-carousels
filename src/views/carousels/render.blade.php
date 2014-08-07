@@ -1,15 +1,15 @@
 @section('css')
-	@parent
-	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-carousel.css') }}
-	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-theme.css') }}
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl.carousel.css') }}
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl.theme.css') }}
 @append
 
 @section('js')
-	@parent
-	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-carousel.min.js') }}
+	{{ HTML::script('packages/angel/carousels/js/owl-carousel/owl.carousel.min.js') }}
 <script>
 	$(function() {
-		$('#carousel-{{ $carousel->slug }}').owlCarousel();
+		$('#carousel-{{ $carousel->slug }}').owlCarousel({
+			items   :   1
+		});
 	});
 </script>
 @append
