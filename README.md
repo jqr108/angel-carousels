@@ -31,3 +31,21 @@ Finally, open up your `app/config/packages/angel/core/config.php` and add the mo
 	'Settings'	=> 'settings'
 ),
 ```
+
+Usage
+------------
+
+```php
+    <?php
+        $Carousel = App::make('Carousel');
+        $carousel = $Carousel::find(1);
+    ?>
+    @include('carousels::render')
+```
+
+If you need to modify the default display or carousel options:
+```bash
+    php artisan view:publish angel/carousels
+```
+
+And edit `views/packages/angel/carousels/render.blade.php`
