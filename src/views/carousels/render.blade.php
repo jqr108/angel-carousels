@@ -1,25 +1,22 @@
-<head>
-	<link rel="stylesheet" href="/workbench/angel/carousels/public/js/owl-carousel/owl.carousel.css">
-	<link rel="stylesheet" href="/workbench/angel/carousels/public/js/owl-carousel/owl.theme.css">
-</head>
+@section('css')
+	@parent
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-carousel.css') }}
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-theme.css') }}
+@append
 
-<body>
-<script src="assets/owl-carousel/owl.carousel.js"></script>
-{{ HTML::script('/packages/angel/core/js/jquery/jquery.min.js') }}
-{{ HTML::script('/workbench/angel/carousels/public/js/owl-carousel/owl-carousel.js') }}
+@section('js')
+	@parent
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl-carousel.min.js') }}
 <script>
-	var id = '{{ $id }}';
-	$(document).ready(function() {
-		$('#{{ $id }}').owlCarousel();
+	$(function() {
+		$('#carousel-{{ $carousel->slug }}').owlCarousel();
 	});
 </script>
-</body>
+@append
 
-<div id="{{ $id }}" class="owl-carousel">
-	@foreach ($slides as $slide)
+<div id="carousel-{{ $carousel->slug }}" class="owl-carousel">
+	@foreach ($carousel->slides as $slide)
 		{{ $slide->html }}
 	@endforeach
 </div>
-
-
 

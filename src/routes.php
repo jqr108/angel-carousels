@@ -30,7 +30,3 @@ Route::group(array('prefix'=>admin_uri('carousels'), 'before'=>'admin'), functio
 	));
 });
 
-Route::get('carousel-test', function() {
-	$Carousel = App::make('Carousel');
-	echo $Carousel::find(1)->display();
-});
