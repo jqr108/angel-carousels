@@ -29,9 +29,8 @@ class AdminCarouselController extends AdminCrudController {
 
 	public function after_save($carousel, &$changes = array())
 	{
-		$slides = Input::get('slides');
-
 		$CarouselSlide = App::make('CarouselSlide');
+		$slides        = Input::get('slides');
 
 		if ($slides) {
 			foreach ($slides as $slide_id => $html) {
@@ -46,12 +45,12 @@ class AdminCarouselController extends AdminCrudController {
 		}
 	}
 
-	public function delete_slide($carousel_id, $slide_id)
+	public function delete_slide($id)
 	{
 		$CarouselSlide = App::make('CarouselSlide');
-
-		$slide = $CarouselSlide::where('id', $slide_id)->where('carousel_id', $carousel_id)->first();
-		if ($slide) $slide->delete();
+		$slide = $CarouselSlide::where('id', $id)->firstOrFail();
+		$carousel_id = $slide->carousel_id;
+		$slide->delete();
 
 		return Redirect::to('admin/carousels/edit/'.$carousel_id)->with('success', '
 			<p>Slide successfully deleted.</p>
