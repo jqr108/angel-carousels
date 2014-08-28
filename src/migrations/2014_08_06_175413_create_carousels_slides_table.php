@@ -17,7 +17,7 @@ class CreateCarouselsSlidesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('carousel_id')->unsigned();
-			$table->integer('number')->unsigned();
+			$table->integer('order')->unsigned();
 			$table->text('html');
 			$table->timestamps();
 
