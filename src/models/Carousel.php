@@ -19,4 +19,15 @@ class Carousel extends Eloquent {
 		$data['id']   = 'carousel-' . $this->slug;
 		return View::make('carousels::carousels.render', $data);
 	}
+
+	public static function transition()
+	{
+		return array(
+			'false'     => 'Normal',
+			'fade'      => 'Fade',
+			'backSlide' => 'Back Slide',
+			'goDown'    => 'Go Down',
+			'scaleUp'   => 'Scale Up',
+		);
+	}
 }

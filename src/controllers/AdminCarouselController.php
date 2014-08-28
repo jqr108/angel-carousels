@@ -16,7 +16,9 @@ class AdminCarouselController extends AdminCrudController {
 	public static function columns()
 	{
 		return array(
-			'name'
+			'name',
+			'transition_style',
+			'auto_play'
 		);
 	}
 

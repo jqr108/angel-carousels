@@ -69,6 +69,38 @@
 							</div>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							{{ Form::label('auto_play', 'Transition Speed') }}
+							<p>In milliseconds. Set to 0 for no autotransition.</p>
+						</td>
+						<td>
+							<div style="width:300px">
+								{{ Form::text('auto_play', null, array('class'=>'form-control', 'placeholder'=>'Transition Speed')) }}
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{{ Form::label('transition_style', 'Transition Style') }}
+						</td>
+						<td>
+							<div style="width:300px">
+								<?php $Carousel = App::make('Carousel'); ?>
+								{{ Form::select('transition_style', $Carousel::transition(), null, array('class'=>'form-control', 'placeholder'=>'Transition Style')) }}
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{{ Form::label('name', 'Name') }}
+						</td>
+						<td>
+							<div style="width:300px">
+								{{ Form::text('name', null, array('class'=>'form-control', 'placeholder'=>'Name')) }}
+							</div>
+						</td>
+					</tr>
 	@if ($action == 'edit')
 					<tr>
 						<td>

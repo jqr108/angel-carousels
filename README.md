@@ -45,7 +45,7 @@ Usage
 
 If you need to modify the default display or carousel options:
 ```bash
-    php artisan view:publish angel/carousels
+php artisan view:publish angel/carousels
 ```
 
 And edit `views/packages/angel/carousels/render.blade.php`
