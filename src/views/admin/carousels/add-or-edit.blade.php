@@ -72,7 +72,7 @@
 					<tr>
 						<td>
 							{{ Form::label('auto_play', 'Transition Speed') }}
-							<p>In milliseconds. Set to 0 for no autotransition.</p>
+							<p>In milliseconds.<br> Set to 0 for no autotransition.</p>
 						</td>
 						<td>
 							<div style="width:300px">
@@ -83,6 +83,7 @@
 					<tr>
 						<td>
 							{{ Form::label('transition_style', 'Transition Style') }}
+							<p>Special transitions may not work on older browsers.</p>
 						</td>
 						<td>
 							<div style="width:300px">

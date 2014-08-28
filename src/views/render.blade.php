@@ -1,6 +1,7 @@
 @section('css')
 	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl.carousel.css') }}
 	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl.theme.css') }}
+	{{ HTML::style('packages/angel/carousels/js/owl-carousel/owl.transitions.css') }}
 @append
 
 @section('js')
