@@ -18,7 +18,8 @@ Add the following service provider to your `providers` array in `app/config/app.
 
 Issue the following command:
 ```bash
-php artisan migrate --package="angel/carousels"   # Run the migrations
+php artisan migrate --package="angel/carousels"
+php artisan asset:publish  angel/carousels
 ```
 
 Finally, open up your `app/config/packages/angel/core/config.php` and add the module to the `menu` array:

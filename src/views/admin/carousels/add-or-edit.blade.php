@@ -92,16 +92,6 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>
-							{{ Form::label('name', 'Name') }}
-						</td>
-						<td>
-							<div style="width:300px">
-								{{ Form::text('name', null, array('class'=>'form-control', 'placeholder'=>'Name')) }}
-							</div>
-						</td>
-					</tr>
 	@if ($action == 'edit')
 					<tr>
 						<td>
