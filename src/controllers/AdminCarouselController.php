@@ -44,19 +44,6 @@ class AdminCarouselController extends AdminCrudController {
 					$slide = new $CarouselSlide;
 					$slide->carousel_id = $carousel->id;
 				}
-
-				$thumb = Image::make(asset($slideImages[$slide_id]));
-
-				//Generate Thumb
-				$thumb->fit(240, 160, function ($constraint) {
-					$constraint->upsize();
-				});
-				$thumb->encode('png');
-				$thumb_path = 'uploads/images/carousels/thumbs/' . $carousel->slug . '-' . $slide_id . '.png';
-				$thumb->save(public_path($thumb_path));
-
-				$slide->thumb = '/' . $thumb_path;
-
 				$slide->name = $slideNames[$slide_id];
 				$slide->image = $slideImages[$slide_id];
 				$slide->html = $html;
