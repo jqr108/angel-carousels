@@ -46,6 +46,7 @@ Usage
 
 If you need to modify the default display or carousel options:
 ```bash
+php artisan asset:publish angel/carousels
 php artisan view:publish angel/carousels
 ```
 
