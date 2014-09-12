@@ -32,15 +32,33 @@ class AdminCarouselController extends AdminCrudController {
 	public function after_save($carousel, &$changes = array())
 	{
 		$CarouselSlide = App::make('CarouselSlide');
-		$slides        = Input::get('slides');
 
-		if ($slides) {
-			foreach ($slides as $slide_id => $html) {
+		$slideHTML   = Input::get('slideHTML');
+		$slideNames  = Input::get('slideNames');
+		$slideImages = Input::get('slideImages');
+
+		if ($slideHTML) {
+			foreach ($slideHTML as $slide_id => $html) {
 				$slide = $CarouselSlide::where('id', $slide_id)->where('carousel_id', $carousel->id)->first();
 				if (!$slide) {
 					$slide = new $CarouselSlide;
 					$slide->carousel_id = $carousel->id;
 				}
+
+				$thumb = Image::make(asset($slideImages[$slide_id]));
+
+				//Generate Thumb
+				$thumb->fit(240, 160, function ($constraint) {
+					$constraint->upsize();
+				});
+				$thumb->encode('png');
+				$thumb_path = 'uploads/images/carousels/thumbs/' . $carousel->slug . '-' . $slide_id . '.png';
+				$thumb->save(public_path($thumb_path));
+
+				$slide->thumb = '/' . $thumb_path;
+
+				$slide->name = $slideNames[$slide_id];
+				$slide->image = $slideImages[$slide_id];
 				$slide->html = $html;
 				$slide->save();
 			}

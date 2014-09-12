@@ -19,6 +19,7 @@ class CreateCarouselsSlidesTable extends Migration {
 			$table->integer('carousel_id')->unsigned();
 			$table->integer('order')->unsigned();
 			$table->text('html');
+			$table->string('image');
 			$table->timestamps();
 
 			$table->foreign('carousel_id')->references('id')->on('carousels')->onDelete('cascade');

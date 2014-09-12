@@ -15,14 +15,29 @@
 			}
 			var html =
 				'<div class="slide" data-id="'+newNumber+'">'
-				+ '<p><textarea class="ckeditor" name="slides['+newNumber+']" id="ckMe'+newNumber+'"></textarea><p>'
-				+ '<p class="text-left">'
-				+ '<a type="button" class="btn btn-danger btn-sm delete-slide" id="delete'+newNumber+'">Delete Slide</a>'
-				+ '</p>'
-				+ '</div>';
+					+ '<p><input type="text" class="form-control" name="slideNames['+newNumber+']" placeholder="Name"><p>'
+					+ '<p><textarea class="ckeditor" name="slideHTML['+newNumber+']" id="ckMe'+newNumber+'"></textarea><p>'
+					+ '<div>'
+					+ '<p><input type="text" class="form-control" placeholder="Image" name="slideImages['+newNumber+']"></p>'
+					+ '<div class="text-right pad"><button type="button" class="btn btn-default imageBrowse" id="imageUpload'+newNumber+'">Browse...</button></div>'
+					+ '</div>'
+					+ '<p class="text-left">'
+					+ '<a type="button" class="btn btn-danger btn-sm delete-slide" id="delete'+newNumber+'">Delete Slide</a>'
+					+ '</p>'
+					+ '</div>';
 			$('.slides').append(html);
 			$('#delete' + newNumber).click(function() {
 				$(this).parent().parent().remove();
+			});
+			$('#imageUpload' + newNumber).click(function() {
+				var $input = $(this).parent().prev().children('input');
+				window.KCFinder = {};
+				window.KCFinder.callBack = function(url) {
+					url = url.substring(1);
+					$input.val(url);
+					window.KCFinder = null;
+				};
+				window.open('/packages/angel/core/js/kcfinder/browse.php?type=images', 'image_browser', 'width=1000,height=600');
 			});
 			CKEDITOR.replace('ckMe'+newNumber);
 		});
@@ -83,7 +98,7 @@
 					<tr>
 						<td>
 							{{ Form::label('transition_style', 'Transition Style') }}
-							<p>Special transitions may not work on older browsers.</p>
+							<p>Special transitions may not work in older browsers.</p>
 						</td>
 						<td>
 							<div style="width:300px">
@@ -102,10 +117,21 @@
 								@foreach ($carousel->slides as $slide)
 								<div class="slide" data-id="{{ $slide->id }}">
 									<p>
-										{{ Form::textarea('slides['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
+										{{ Form::text('slideNames['.$slide->id.']',  $slide->name, array('class'=>'form-control', 'placeholder'=>'Name')) }}
 									</p>
+									<p>
+										{{ Form::textarea('slideHTML['.$slide->id.']', $slide->html, array('class'=>'ckeditor')) }}
+									</p>
+									<div>
+										<p>
+											{{ Form::text('slideImages['.$slide->id.']', $slide->image, array('class'=>'form-control', 'placeholder'=>'Image')) }}
+										</p>
+										<div class="text-right pad">
+											<button type="button" class="btn btn-default imageBrowse">Browse...</button>
+										</div>
+									</div>
 									<p class="text-left">
-										<a type="button" class="btn btn-danger btn-sm delete-slide" href="{{ url('admin/carousels/delete-slide/' . $carousel->id . '/' . $slide->id )  }}">Delete Slide</a>
+										<a type="button" class="btn btn-danger btn-sm delete-slide" href="{{ url('admin/carousels/delete-slide/' . $slide->id )  }}">Delete Slide</a>
 									</p>
 								</div>
 								@endforeach

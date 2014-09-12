@@ -16,7 +16,7 @@ class CreateCarouselsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->string('slug')->unique();;
+			$table->string('slug')->unique();
 			$table->timestamps();
 		});
 	}
