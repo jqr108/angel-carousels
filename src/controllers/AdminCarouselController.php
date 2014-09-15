@@ -13,22 +13,6 @@ class AdminCarouselController extends AdminCrudController {
 	protected $package	= 'carousels';
 	protected $slug     = 'name';
 
-	public static function columns()
-	{
-		return array(
-			'name',
-			'transition_style',
-			'auto_play'
-		);
-	}
-
-	public function validate_rules($id = null)
-	{
-		return array(
-			'name' => 'required'
-		);
-	}
-
 	public function after_save($carousel, &$changes = array())
 	{
 		$CarouselSlide = App::make('CarouselSlide');

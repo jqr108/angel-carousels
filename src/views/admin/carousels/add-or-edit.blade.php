@@ -75,7 +75,7 @@
 			<table class="table table-striped">
 				<tbody>
 					<tr>
-						<td>
+						<td style="width: 150px">
 							{{ Form::label('name', 'Name') }}
 						</td>
 						<td>

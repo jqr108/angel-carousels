@@ -10,8 +10,8 @@
 		$(function() {
 			$('#carousel-{{ $carousel->slug }}').owlCarousel({
 				items           : 1,
-				autoPlay        : {{ $carousel->auto_play == 0 ? false : $carousel->auto_play }},
-				transitionStyle : '{{ $carousel->transition_style }}'
+				autoPlay        : {{ $carousel->auto_play == 0 ? 'false' : $carousel->auto_play }},
+				transitionStyle : {{ $carousel->transition_style }}
 			});
 		});
 	</script>

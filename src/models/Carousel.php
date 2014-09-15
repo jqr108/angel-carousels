@@ -1,8 +1,10 @@
 <?php namespace Angel\Carousels;
 
-use Eloquent, App, View;
+use Eloquent, App, View, Input;
 
-class Carousel extends Eloquent {
+class Carousel extends \Angel\Core\AngelModel {
+
+	public static $reorderable = false;
 
 	///////////////////////////////////////////////
 	//               Relationships               //
@@ -29,5 +31,52 @@ class Carousel extends Eloquent {
 			'goDown'    => 'Go Down',
 			'scaleUp'   => 'Scale Up',
 		);
+	}
+
+	public static function columns()
+	{
+		return array(
+			'name',
+			'transition_style',
+			'auto_play'
+		);
+	}
+
+	public function validate_rules($id = null)
+	{
+		return array(
+			'name' => 'required'
+		);
+	}
+
+	///////////////////////////////////////////////
+	//                  Events                   //
+	///////////////////////////////////////////////
+	public static function boot()
+	{
+		parent::boot();
+
+		static::saved(function($carousel) {
+			$CarouselSlide = App::make('CarouselSlide');
+
+			$slideHTML   = Input::get('slideHTML');
+			$slideNames  = Input::get('slideNames');
+			$slideImages = Input::get('slideImages');
+
+			if ($slideHTML) {
+				foreach ($slideHTML as $slide_id => $html) {
+					$slide = $CarouselSlide::where('id', $slide_id)->where('carousel_id', $carousel->id)->first();
+					if (!$slide) {
+						$slide = new $CarouselSlide;
+						$slide->carousel_id = $carousel->id;
+					}
+
+					$slide->name = $slideNames[$slide_id];
+					$slide->image = $slideImages[$slide_id];
+					$slide->html = $html;
+					$slide->save();
+				}
+			}
+		});
 	}
 }
