@@ -4,7 +4,7 @@ use Eloquent, App, View, Input;
 
 class Carousel extends \Angel\Core\AngelModel {
 
-	public static $reorderable = false;
+	public $reorderable = false;
 
 	///////////////////////////////////////////////
 	//               Relationships               //
