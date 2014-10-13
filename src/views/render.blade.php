@@ -10,6 +10,7 @@
 		$(function() {
 			$('#carousel-{{ $carousel->slug }}').owlCarousel({
 				items           : 1,
+				singleItem      : true,
 				autoPlay        : {{ $carousel->auto_play == 0 ? 'false' : $carousel->auto_play }},
 				transitionStyle : "{{ $carousel->transition_style }}"
 			});
