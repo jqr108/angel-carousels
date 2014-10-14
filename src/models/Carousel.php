@@ -4,6 +4,7 @@ use Eloquent, App, View, Input;
 
 class Carousel extends \Angel\Core\AngelModel {
 
+	public $slugSeed    = 'name';
 	public $reorderable = false;
 
 	///////////////////////////////////////////////
